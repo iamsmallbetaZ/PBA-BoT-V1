@@ -6,408 +6,145 @@ let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
-━━━━ 「 *ᴾᴮᴬ ᴮᵒᵀ* 」 ━━━━͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
+const Asena = require('../events');
+const {MessageType, MessageOptions, Mimetype} = require('@adiwajshing/baileys');
+const axios = require('axios');
 
-     ✪〔 %me 〕✪
-🔸Hai, %name!
+const Language = require('../language');
+const Lang = Language.getString('wallpaper');
 
-🔸 Github: [ https://github.com/I4MBetAZ/PBA-BoT-V1 ]
+Asena.addCommand({pattern: 'menu', fromMe: false, desc: Lang.WP}, (async (message, match) => {
 
+    var r_text = new Array ();
+    
+    
+    r_text[0] = "https://www.pixelstalk.net/wp-content/uploads/2016/03/Pikachu-wallpaper-HD-dowload.jpg";
+    
+    
+    var i = Math.floor(1*Math.random())
 
-     〘 *ᴾᴮᴬ ᴮᵒᵀ* 〙
-%readmore`.trimStart(),
-  header: '┌─〔 %category 〕',
-  body: '├ %cmd',
-  footer: '└────\n',
-  after: `
-*%npmname@*
-${'```%npmdesc```'}
-`,
-}
-let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
-  let tags
-  let teks = `${args[0]}`.toLowerCase()
-  let arrayMenu = ['git', 'game', 'xp', 'stiker','quotes', 'admin', 'grup', 'premium', 'internet', 'anonymous', 'nulis', 'downloader', 'tools','anime','videomaker', 'fun', 'database', 'audio','info','owner']
-  if (!arrayMenu.includes(teks)) teks = '404'
-  if (teks == 'all') tags = {
-    'main': 'Main',
-    'game': 'Game',
-    'xp': 'Exp & Limit',
-    'anime': 'Anime',
-    'sticker': 'Stiker',
-    'shell': 'Magic Shells',
-    'quotes': 'Quotes',
-    'admin': `Admin ${global.opts['restrict'] ? '' : '(Disabled)'}`,
-    'group': 'Grup',
-    'premium': 'Premium',
-    'internet': 'Internet',
-    'anonymous': 'Anonymous Chat',
-    'nulis': 'MagerNulis & Logo',
-    'downloader': 'Downloader',
-    'tools': 'Tools',
-    'Video Maker':'videomaker',
-    'fun': 'Fun',
-    'database': 'Database',
-    'vote': 'Voting',
-    'audio': 'Voice Changer',
-    'info': 'Info',
-    '': 'No Category',
-  }
-  if (teks == 'game') tags = {
-    'game': 'Game'
-  }
-  if (teks == 'xp') tags = {
-    'xp': 'Exp & Limit'
-  }
-  if (teks == 'stiker') tags = {
-    'sticker': 'Stiker'
-  }
-  if (teks == 'shell') tags = {
-    'shell': 'Magic Shells'
-  }
-  if (teks == 'quotes') tags = {
-    'quotes': 'Quotes'
-  }
-  if (teks == 'admin') tags = {
-    'admin': `Admin ${global.opts['restrict'] ? '' : '(Disabled)'}`
-  }
-  if (teks == 'grup') tags = {
-    'group': 'Grup'
-  }
-  if (teks == 'premium') tags = {
-    'premium': 'Premium'
-  }
-  if (teks == 'videomaker') tags = {
-    'videomaker': 'Video Maker'
-  }
-  if (teks == 'internet') tags = {
-    'internet': 'Internet'
-  }
-  if (teks == 'anonymous') tags = {
-    'anonymous': 'Anonymous Chat'
-  }
-  if (teks == 'nulis') tags = {
-    'nulis': 'MagerNulis & Logo'
-  }
-  if (teks == 'downloader') tags = {
-    'downloader': 'Downloader'
-  }
-  if (teks == 'tools') tags = {
-    'tools': 'Tools'
-  }
-  if (teks == 'fun') tags = {
-    'fun': 'Fun'
-  }
-  if (teks == 'anime') tags = {
-    'anime': 'Anime'
-  }
-  if (teks == 'database') tags = {
-    'database': 'Database'
-  }
-  if (teks == 'audio') tags = {
-    'audio': 'Voice Changer'
-  }
-  if (teks == 'vote') tags = {
-    'vote': 'Voting',
-    'absen': 'Absen'
-  }
-  if (teks == 'owner') tags = {
-    'owner': 'Owner',
-    'host': 'Host',
-    'advanced': 'Advanced'
-  }
+    var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
+
+    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: `⛦━━━━━✨️Ameer Suhail✨️━━━━━⛦
 
 
+𝐇𝐞𝐥𝐥𝐨👋 𝐈 𝐚𝐦 𝐚 Ameer Suhail 𝐛𝐨𝐭.
+            *Pikachu*
 
-  try {
-    let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
-    let { exp, limit, level, role, registered } = global.db.data.users[m.sender]
-    let { min, xp, max } = levelling.xpRange(level, global.multiplier)
-    let name = registered ? global.db.data.users[m.sender].name : conn.getName(m.sender)
-    let d = new Date(new Date + 3600000)
-    let locale = 'en'
-    // d.getTimeZoneOffset()
-    // Offset -420 is 18.00
-    // Offset    0 is  0.00
-    // Offset  420 is  7.00
-    let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
-    let week = d.toLocaleDateString(locale, { weekday: 'long' })
-    let date = d.toLocaleDateString(locale, {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    })
-    let time = d.toLocaleTimeString(locale, {
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric'
-    })
-    let _uptime = process.uptime() * 1000
-    let _muptime
-    if (process.send) {
-      process.send('uptime')
-      _muptime = await new Promise(resolve => {
-        process.once('message', resolve)
-        setTimeout(resolve, 1000)
-      }) * 1000
-    }
-    let muptime = clockString(_muptime)
-    let uptime = clockString(_uptime)
-    let totalreg = Object.keys(global.db.data.users).length
-    let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
-    let help = Object.values(global.plugins).filter(plugin => !plugin.disabled).map(plugin => {
-      return {
-        help: Array.isArray(plugin.help) ? plugin.help : [plugin.help],
-        tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
-        prefix: 'customPrefix' in plugin,
-        limit: plugin.limit,
-        premium: plugin.premium,
-        enabled: !plugin.disabled,
-      }
-    })
-    if (teks == '404') {
-      return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
-        "listMessage": {
-          "title": `ᴾᴮᴬ ᴮᵒᵀ ᴮʸ ᴾᴮᴬ ᴹᵒᴰˢ 𝙼𝚁_𝚣,
-┌─────❲ *ᴾᴮᴬ ᴮᵒᵀ* ❳
-┊
-└─────────────────(っ◔◡◔)っ
-        
-     ΉΣᄂᄂӨ GΛYIᄃΉ 𝙸𝚊𝚖 ᵐ𝐫_z ᴮᵒᵀ  ♋︎❍︎
+■□■□■□■□■□■□■□■□■□■□
+♕ *𝙈𝙚𝙙𝙞𝙖 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨* ♕
 
-┌─────❲ ᴀʙᴏᴜᴛ ❳
-┊☞  Oi ${ucapan()}
-┊☞ 👤 *NAME* : ${name}
-┊☞ 🧭 *TIME* : ${time},
-┊☞ 💫 *WEEK* : ${week},
-┊☞ ✅ *DATE* : ${date},
-┊☞ 💝 *OWNER* : ᴾᴮᴬ ᴹᵒᴰˢ 𝙼𝚁_𝚣
-┊☞ 🖌️ *PREFIX* : LσT σF ρREϝιX
-┊☞ ☮️ *BOT NAME* : ᴾᴮᴬ ᴮᵒᵀ 
-└─────────────────⸙ \n\ ______`
-          
-           .trim(),
-           "description": "*DON'T SPAM*",
-          "buttonText": "Click  Here",
-          "listType": "SINGLE_SELECT",
-          "sections": [
-            {
-              "rows": [
-                {
-                  "title": `ᴾᴮᴬ ᴮᵒᵀ`,
-                  "description": "ᴾᴮᴬ ᴮᵒᵀ git link",
-                  "rowId": ".git"
-                }, {
-                  "title": "💻Game",
-                  "description": "Game features",
-                  "rowId": ".? game"
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -song <text>
+🍙𝙐𝙨𝙚➜ Downloads song for you.
+⚠️.song  baby love
 
-                }, {
-                  "title": "💸XP",
-                  "description": "Features level & usage limit",
-                  "rowId": ".? xp"
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -video <yt link>
+🍙𝙐𝙨𝙚➜ Downloads video from YouTube link.
 
-                },  {
-                  "title": "Video Maker",
-                  "description": "Making Different Types Of Videos",
-                  "rowId": ".? .videomaker"
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -insta <link>
+🍙𝙐𝙨𝙚➜   Downloads content from instagram.
 
-                },{
-                  "title": "Sticker",
-                  "description": "Features for making stickers",
-                  "rowId": ".? stiker"
-                }, { 
-                "title": "Anime",
-                "description": "Anime Related Plugin",
-                "rowId": ".? anime"
-              },  {
-                  "title": "Quotes",
-                  "description": "Gives You random quotes",
-                  "rowId": ".? quote"
-                }, {
-                  "title": "Admin",
-                  "description": "Group Admin Commands",
-                  "rowId": ".? admin"
-                }, {
-                  "title": "Grup",
-                  "description": "Group Related Commands",
-                  "rowId": ".? grup"
-                }, {
-                  "title": "Premium",
-                  "description": "Premium Users Plugins",
-                  "rowId": ".? premium"
-                }, {
-                  "title": "Internet",
-                  "description": "Commands Related To Internet",
-                  "rowId": ".? internet"
-                }, {
-                  "title": "Anonymous",
-                  "description": "To Start Anonymous Chatting",
-                  "rowId": ".? anonymous"
-                }, {
-                  "title": "Magic Shell",
-                  "description": "Random answer feature",
-                  "rowId": `.? magicshell`
-                }, {
-                  "title": "Nulis & Logo",
-                  "description": "Text Maker Coammnds",
-                  "rowId": ".? nulis"
-                }, {
-                  "title": "Downloader",
-                  "description": "Downloading Commnds",
-                  "rowId": ".? downloader"
-                }, {
-                  "title": "Tools",
-                  "description": "Tool features",
-                  "rowId": ".? tools"
-                }, {
-                  "title": "Voice Changer",
-                  "description": "To change the voice",
-                  "rowId": `.? audio`
-                }, {
-                  "title": "Fun",
-                  "description": "Just for fun",
-                  "rowId": ".? fun"
-                }, {
-                  "title": "Database",
-                  "description": "User database",
-                  "rowId": ".? database"
-                },{
-                  "title": "Owner",
-                  "description": "Owner's special features",
-                  "rowId": ".? owner"
-                }
-              ]
-            }
-          ], "contextInfo": {
-            "stanzaId": m.key.id,
-            "participant": m.sender,
-            "quotedMessage": m.message
-          }
-        }
-      }, {}), { waitForAck: true })
-    }
-    // use this if you use business whatsapp
-    //   throw `
-    // ┌〔 LIST MENU 〕
-    // ├ ${_p + command} all
-    // ├ ${_p + command} game
-    // ├ ${_p + command} xp
-    // ├ ${_p + command} stiker
-    // ├ ${_p + command} quotes
-    // ├ ${_p + command} admin
-    // ├ ${_p + command} group
-    // ├ ${_p + command} premium
-    // ├ ${_p + command} internet
-    // ├ ${_p + command} anonymous
-    // ├ ${_p + command} nulis
-    // ├ ${_p + command} downloader
-    // ├ ${_p + command} tools
-    // ├ ${_p + command} fun
-    // ├ ${_p + command} database
-    // ├ ${_p + command} vote
-    // ├ ${_p + command} quran
-    // ├ ${_p + command} audio
-    // ├ ${_p + command} jadibot
-    // ├ ${_p + command} info
-    // ├ ${_p + command} owner
-    // └────  
-    //     `.trim()
-    let groups = {}
-    for (let tag in tags) {
-      groups[tag] = []
-      for (let plugin of help)
-        if (plugin.tags && plugin.tags.includes(tag))
-          if (plugin.help) groups[tag].push(plugin)
-      // for (let tag of plugin.tags)
-      //   if (!(tag in tags)) tags[tag] = tag
-    }
-    conn.menu = conn.menu ? conn.menu : {}
-    let before = conn.menu.before || defaultMenu.before
-    let header = conn.menu.header || defaultMenu.header
-    let body = conn.menu.body || defaultMenu.body
-    let footer = conn.menu.footer || defaultMenu.footer
-    let after = conn.menu.after || (conn.user.jid == global.conn.user.jid ? '' : `Presented by https://wa.me/${global.conn.user.jid.split`@`[0]}`) + defaultMenu.after
-    let _text = [
-      before,
-      ...Object.keys(tags).map(tag => {
-        return header.replace(/%category/g, tags[tag]) + '\n' + [
-          ...help.filter(menu => menu.tags && menu.tags.includes(tag) && menu.help).map(menu => {
-            return menu.help.map(help => {
-              return body.replace(/%cmd/g, menu.prefix ? help : '%p' + help)
-                .replace(/%islimit/g, menu.limit ? '(Limit)' : '')
-                .replace(/%isPremium/g, menu.premium ? '(Premium)' : '')
-                .trim()
-            }).join('\n')
-          }),
-          footer
-        ].join('\n')
-      }),
-      after
-    ].join('\n')
-    text = typeof conn.menu == 'string' ? conn.menu : typeof conn.menu == 'object' ? _text : ''
-    let replace = {
-      '%': '%',
-      p: _p, uptime, muptime,
-      me: conn.user.name,
-      npmname: package.name,
-      npmdesc: package.description,
-      version: package.version,
-      exp: exp - min,
-      maxexp: xp,
-      totalexp: exp,
-      xp4levelup: max - exp <= 0 ? `Ready for *${_p}levelup*` : `${max - exp} More XP for levelup`,
-      github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
-      level, limit, name, weton, week, date, time, totalreg, rtotalreg, role,
-      readmore: readMore
-    }
-    text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.send2ButtonLoc(m.chat, await (await fetch("https://raw.githubusercontent.com/iambabu98/uu/main/Hnet.com-image%20(3).jpg")).buffer(), text.trim(), '© ᴾᴮᴬ ᴹᵒᴰˢ 𝙼𝚁_𝚣 ©', 'Owner Bot', ',owner', 'All Commands', '.? all', m)
-  } catch (e) {
-    conn.reply(m.chat, 'Sorry, Try Again', m)
-    throw e
-  }
-}
-handler.help = ['menu', 'help','list','pbamods', '?']
-handler.tags = ['main']
-handler.command = /^(listt|\?)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -yt<text>
+🍙𝙐𝙨𝙚➜   Gives you YT links.
 
-handler.admin = false
-handler.botAdmin = false
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -show <show name>
+🍙𝙐𝙨𝙚➜   Get info related to tv series and shows.
 
-handler.fail = null
-handler.exp = 3
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -gif 
+🍙𝙐𝙨𝙚➜ Converts video to gif.
 
-module.exports = handler
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -tomp3 
+🍙𝙐𝙨𝙚➜ Converts video into audio.
 
-const more = String.fromCharCode(1)
-const readMore = more.repeat(1)
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -say <text>
+🍙𝙐𝙨𝙚➜ Converts text into voice.
 
-function clockString(ms) {
-  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
-  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
-function ucapan() {
-  const time = moment.tz('Asia/Kolkata').format('HH')
-  res = "Good Morning 🌄"
-  if (time >= 4) {
-    res = "Good Morning 🌞"
-  }
-  if (time > 10) {
-    res = "Good afternoon 🌅"
-  }
-  if (time >= 15) {
-    res = "Good Evening 🌆"
-  }
-  if (time >= 18) {
-    res = "Good Night 🌌"
-  }
-  return res
-}
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -img <text>
+🍙𝙐𝙨𝙚➜ It sends image from google.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -trt <language code>
+🍙𝙐𝙨𝙚➜ Translate the text you tag.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -wiki <text>
+🍙𝙐𝙨𝙚➜ It sends Wikipedia result.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -lyric <text>
+🍙𝙐𝙨𝙚➜ Finds the lyrics of the song.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -covid <country code>
+🍙𝙐𝙨𝙚➜ Send the covid stats of your country.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -weather <city>
+🍙𝙐𝙨𝙚➜ Tells you about the weather of your place.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -removebg 
+🍙𝙐𝙨𝙚➜ Removes the background of tge image.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -ocr
+🍙𝙐𝙨𝙚➜ Finds the text written on the image.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -wallpaper
+🍙𝙐𝙨𝙚➜ It sends you random wallpaper.
+
+■□■□■□■□■□Pikachu■□■□■□■□■□
+♟ *𝙁𝙪𝙣 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨* ♟
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -joke 
+🍙𝙐𝙨𝙚➜ It sends a random joke.
+ 
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -meme <text>
+🍙𝙐𝙨𝙚➜ Cations the image into a meme.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -quote 
+🍙𝙐𝙨𝙚➜ It sends a random quote.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -ss <website link>
+🍙𝙐𝙨𝙚➜ It sends the screenshot of the website.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -changesay <text>
+🍙𝙐𝙨𝙚➜ Converts text into changesay meme image.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -trumpsay
+🍙𝙐𝙨𝙚➜ Convert text into Trump's tweet.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -compliment 
+🍙𝙐𝙨𝙚➜ Gives you a compliment.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -bitly <link>
+🍙𝙐𝙨𝙚➜   Shorten your link.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -dict 
+🍙𝙐𝙨𝙚➜   Dictionary [-dict en;anime]
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -zodiac <leo> 
+🍙𝙐𝙨𝙚➜   Tells you about your horoscope.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -qr <text>
+🍙𝙐𝙨𝙚➜   Converts text into qr code.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -movie 
+🍙𝙐𝙨𝙚➜  Gives you info about movie.
+⚠️movie master
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜  -anime <text>
+🍙𝙐𝙨𝙚➜  Gives you info about anime.
+⚠️anime pikachu
+■□■□■□■□■Pikachu□■□■□■□■□■□
+♝ *𝙎𝙩𝙞𝙘𝙠𝙚𝙧 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨* ♝
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -sticker 
+🍙𝙐𝙨𝙚➜ Converts img/gif into a sticker.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -photo 
+🍙𝙐𝙨𝙚➜ Converts sticker into image.
+
+➡️𝘾𝙤𝙢𝙢𝙖𝙣𝙙➜ -attp <text>
+🍙𝙐𝙨𝙚➜ Converts text into glowing sticker.
+⚠️ex  attp pikachu
+■□■□■□■□■□■□■□■□■□■□
+═════💢Pikachu💢═════
+▣▣▣▣▣▣▣▣▣ameersuhail▣▣▣▣▣▣▣▣▣▣▣
+
+`}) 
+
+}));
